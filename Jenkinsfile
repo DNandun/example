@@ -32,7 +32,7 @@ pipeline {
         }
 
         // Optional: Add Docker Push and Deploy stages if using a container registry or target host
-        /*
+        
         stage('Push Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
@@ -51,7 +51,7 @@ pipeline {
                 sh "docker compose up -d"
             }
         }
-        */
+        
     }
 
     post {
