@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSphere | Student Management Portal</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Premium Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation / Branding -->
+        <header>
+            <div class="brand-section">
+                <h1><i class="fa-solid fa-graduation-cap"></i> EduSphere Portal</h1>
+                <p>Advanced Student Registry & Management System</p>
+            </div>
+            <button class="btn btn-primary" id="add-student-btn">
+                <i class="fa-solid fa-plus"></i> Register Student
+            </button>
+        </header>
+
+        <!-- Stats Counter Dashboard -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div class="stat-details">
+                    <h3 id="total-students-stat">0</h3>
+                    <p>Total Registered</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <div class="stat-details">
+                    <h3 id="unique-domains-stat">0</h3>
+                    <p>Unique Domains</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon purple">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <div class="stat-details">
+                    <h3 style="font-size: 1.15rem; font-weight: 600;" id="last-updated-stat">Loading...</h3>
+                    <p>Last Synced</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls (Search) -->
+        <div class="controls-container">
+            <div class="search-wrapper">
+                <input type="text" id="search-input" class="search-input" placeholder="Search by name, email or registry ID...">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="spinner-container" id="loading-spinner">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Glassmorphic Student Table -->
+        <div class="data-table-container" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name & ID</th>
+                        <th>Email Address</th>
+                        <th style="text-align: right; padding-right: 32px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="students-table-body">
+                    <!-- Dynamic injection of student rows -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty State Illustration -->
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <i class="fa-solid fa-user-slash"></i>
+            <h3>No Students Found</h3>
+            <p>Register a student or adjust your search parameters to view registry records.</p>
+        </div>
+    </div>
+
+    <!-- Registration / Editing Dialog Modal -->
+    <div class="modal-overlay" id="student-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modal-title">Register New Student</h2>
+                <button class="modal-close" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="student-form">
+                <div class="modal-body">
+                    <!-- Hidden input to store editing ID -->
+                    <input type="hidden" id="student-id">
+                    
+                    <div class="form-group">
+                        <label for="student-name" class="form-label">Full Name</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="student-name" class="form-input" placeholder="e.g. John Doe" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="student-email" class="form-label">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="student-email" class="form-input" placeholder="e.g. john.doe@example.com" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Page Footer -->
+    <footer>
+        <p>&copy; 2026 EduSphere Systems. Built on Spring Boot & H2 Memory Database.</p>
+    </footer>
+
+    <!-- App Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
